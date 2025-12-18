@@ -44,7 +44,10 @@ INSTALLED_APPS = [
     "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
     "debug_toolbar",
+    "django_countries",
+    "taggit",
     "accounts",
+    "gallery",
 ]
 
 MIDDLEWARE = [
