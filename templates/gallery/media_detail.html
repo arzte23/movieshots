@@ -11,7 +11,8 @@
     {% for image in images %}
       <div class="col-md-4 mb-4">
         <div class="card">
-          <img src="{{ image.image.url }}">
+          <img src="{{ image.image.url }}" class="card-img-top" alt="..."
+               style="height: 200px; object-fit: cover;">
         </div>
       </div>
     {% endfor %}
