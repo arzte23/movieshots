@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Latest Screenshots</h1>
+
+  <div class="row">
+    {% for screenshot in screenshots %}
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="{{ screenshot.image.url }}" class="card-img-top" alt="..."
+               style="height: 200px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="card-title">{{ screenshot.media_item.title }}</h5>
+            <a href="{% url 'media_detail' screenshot.media_item.slug %}" class="bth btn-primary">View
+              Movie</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

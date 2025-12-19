@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ item.title }} ({{ item.release_year }}{% if item.end_year %} - {{ item.end_year }}){% else %}){% endif %}</h1>
+  <p>Country: {{ item.country.name }}</p>
+  <p>{{ item.description|linebreaks }}</p>
+
+  <h2>Screenshots</h2>
+
+  <div class="row">
+    {% for image in images %}
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="{{ image.image.url }}">
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
