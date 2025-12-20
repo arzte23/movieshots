@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import get_object_or_404, render
 
 from .models import MediaItem, Screenshot
@@ -13,8 +14,27 @@ def home(request):
 
 def media_detail(request, slug):
     item = get_object_or_404(MediaItem, slug=slug)
-    images = item.screenshots.all()
+    screenshots = item.screenshots.all()
 
     return render(
-        request, "gallery/media_detail.html", {"item": item, "images": images}
+        request, "gallery/media_detail.html", {"item": item, "screenshots": screenshots}
+    )
+
+
+def search_results(request):
+    query = request.GET.get("q")
+    screenshots = []
+
+    if query:
+        screenshots = Screenshot.objects.filter(
+            Q(media_item__title__icontains=query) | Q(tags__name__icontains=query)
+        ).distinct()
+
+    return render(
+        request,
+        "gallery/search_results.html",
+        {
+            "screenshots": screenshots,
+            "query": query,
+        },
     )

@@ -8,11 +8,20 @@
   <h2>Screenshots</h2>
 
   <div class="row">
-    {% for image in images %}
+    {% for screenshot in screenshots %}
       <div class="col-md-4 mb-4">
         <div class="card">
-          <img src="{{ image.image.url }}" class="card-img-top" alt="..."
+          <img src="{{ screenshot.image.url }}" class="card-img-top" alt="..."
                style="height: 200px; object-fit: cover;">
+          <div class="card-body">
+            <p>Tags:
+              {% for tag in screenshot.tags.all %}
+                <a href="{% url 'search_results' %}?q={{ tag.name }}" class="badge bg-secondary text-decoration-none">
+                  {{ tag.name }}
+                </a>
+              {% endfor %}
+            </p>
+          </div>
         </div>
       </div>
     {% endfor %}
