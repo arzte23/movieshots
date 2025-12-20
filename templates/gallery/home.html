@@ -5,24 +5,7 @@
 
   <div class="row">
     {% for screenshot in screenshots %}
-      <div class="col-md-4 mb-4">
-        <div class="card">
-          <img src="{{ screenshot.image.url }}" class="card-img-top" alt="..."
-               style="height: 200px; object-fit: cover;">
-          <div class="card-body">
-            <h5 class="card-title">{{ screenshot.media_item.title }}</h5>
-            <p>Tags:
-              {% for tag in screenshot.tags.all %}
-                <a href="{% url 'search_results' %}?q={{ tag.name }}" class="badge bg-secondary text-decoration-none">
-                  {{ tag.name }}
-                </a>
-              {% endfor %}
-            </p>
-            <a href="{% url 'media_detail' screenshot.media_item.slug %}" class="btn btn-primary">View
-              Movie</a>
-          </div>
-        </div>
-      </div>
+      {% include "gallery/includes/card.html" %}
     {% endfor %}
   </div>
 {% endblock %}
