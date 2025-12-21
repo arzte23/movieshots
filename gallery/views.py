@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, render
 
@@ -5,11 +6,14 @@ from .models import MediaItem, Screenshot
 
 
 def home(request):
-    recent_screenshots = Screenshot.objects.select_related("media_item").order_by(
+    screenshots_list = Screenshot.objects.select_related("media_item").order_by(
         "-created_at"
-    )[:20]
+    )
+    paginator = Paginator(screenshots_list, 12)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
 
-    return render(request, "gallery/home.html", {"screenshots": recent_screenshots})
+    return render(request, "gallery/home.html", {"page_obj": page_obj})
 
 
 def media_detail(request, slug):
@@ -23,18 +27,22 @@ def media_detail(request, slug):
 
 def search_results(request):
     query = request.GET.get("q")
-    screenshots = []
+    screenshot_list = []
 
     if query:
-        screenshots = Screenshot.objects.filter(
+        screenshot_list = Screenshot.objects.filter(
             Q(media_item__title__icontains=query) | Q(tags__name__icontains=query)
         ).distinct()
+
+    paginator = Paginator(screenshot_list, 12)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
 
     return render(
         request,
         "gallery/search_results.html",
         {
-            "screenshots": screenshots,
+            "page_obj": page_obj,
             "query": query,
         },
     )
