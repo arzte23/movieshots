@@ -46,3 +46,18 @@ def search_results(request):
             "query": query,
         },
     )
+
+
+def category_view(request, category_type):
+    screenshot_list = (
+        Screenshot.objects.filter(media_item__media_type=category_type)
+        .select_related("media_item")
+        .order_by("-created_at")
+    )
+    paginator = Paginator(screenshot_list, 12)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+
+    return render(
+        request, "gallery/home.html", {"page_obj": page_obj, "category": category_type}
+    )

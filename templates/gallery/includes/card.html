@@ -12,8 +12,15 @@
             </a>
           {% endfor %}
         </p>
-        <a href="{% url 'media_detail' screenshot.media_item.slug %}" class="btn btn-primary">View
-          Movie</a>
+
+        <div class="d-flex justify-content-between align-items-center">
+          <a href="{% url 'media_detail' screenshot.media_item.slug %}" class="btn btn-primary btn-sm">View
+            Movie</a>
+          <a href="{{ screenshot.image.url }}" download class="btn btn-outline-dark btn-sm">
+            <i class="bi bi-download"></i> ↓
+          </a>
+        </div>
+
       </div>
     </div>
   </div>
