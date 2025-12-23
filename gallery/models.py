@@ -39,7 +39,7 @@ class Screenshot(models.Model):
     )
     image = models.ImageField(upload_to="screenshots/")
     tags = TaggableManager(through=UUIDTaggedItem)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
     def __str__(self):
         return f"Screenshot of {self.media_item.title}"
