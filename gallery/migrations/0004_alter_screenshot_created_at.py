@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('gallery', '0003_uuidtaggeditem_alter_screenshot_tags'),
+        ("gallery", "0003_uuidtaggeditem_alter_screenshot_tags"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='screenshot',
-            name='created_at',
+            model_name="screenshot",
+            name="created_at",
             field=models.DateTimeField(auto_now_add=True, db_index=True),
         ),
     ]

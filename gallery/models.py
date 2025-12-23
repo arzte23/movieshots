@@ -6,6 +6,8 @@ from django_countries.fields import CountryField
 from taggit.managers import TaggableManager
 from taggit.models import GenericUUIDTaggedItemBase, TaggedItemBase
 
+from .utils import get_file_path
+
 
 class MediaItem(models.Model):
     TYPE_CHOICES = (
@@ -37,7 +39,7 @@ class Screenshot(models.Model):
     media_item = models.ForeignKey(
         MediaItem, on_delete=models.CASCADE, related_name="screenshots"
     )
-    image = models.ImageField(upload_to="screenshots/")
+    image = models.ImageField(upload_to=get_file_path)
     tags = TaggableManager(through=UUIDTaggedItem)
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
