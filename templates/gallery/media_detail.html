@@ -11,8 +11,13 @@
     {% for screenshot in screenshots %}
       <div class="col-md-4 mb-4">
         <div class="card">
-          <img src="{{ screenshot.image.url }}" class="card-img-top" alt="..."
-               style="height: 200px; object-fit: cover;">
+          <a href="{{ screenshot.image.url }}"
+             data-fancybox="gallery"
+             data-download-src="{{ screenshot.image.url }}"
+             data-caption="<a href='{% url 'media_detail' item.slug %}'>{{ item.title }}</a>">
+            <img src="{{ screenshot.image.url }}" class="card-img-top" alt="..."
+                 style="height: 200px; object-fit: cover;">
+          </a>
           <div class="card-body">
             <p>
               {% for tag in screenshot.tags.all %}
