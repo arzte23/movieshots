@@ -12,6 +12,7 @@ gunicorn==23.0.0
 marshmallow==4.1.1
 packaging==25.0
 pillow==12.0.0
+psycopg2-binary==2.9.11
 python-dotenv==1.2.1
 ruff==0.14.10
 sqlparse==0.5.4
