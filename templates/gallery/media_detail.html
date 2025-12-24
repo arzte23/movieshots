@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% block title %}{{ item.title }} ({{ item.release_year }}{% if item.end_year %} - {{ item.end_year }}){% else %}){% endif %}{% endblock %}
+
 {% block content %}
   <h1>{{ item.title }} ({{ item.release_year }}{% if item.end_year %} - {{ item.end_year }}){% else %}){% endif %}</h1>
   <p>Country: {{ item.country.name }}</p>
@@ -14,7 +16,7 @@
           <a href="{{ screenshot.image.url }}"
              data-fancybox="gallery"
              data-download-src="{{ screenshot.image.url }}"
-             data-caption="<a href='{% url 'media_detail' item.slug %}'>{{ item.title }}</a>">
+             data-caption="<a style='text-decoration: none; color: inherit;' href='{% url 'media_detail' item.slug %}'>{{ item.title }}</a>">
             <img src="{{ screenshot.image.url }}" class="card-img-top" alt="..."
                  style="height: 200px; object-fit: cover;">
           </a>

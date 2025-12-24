@@ -3,7 +3,7 @@
     <a href="{{ screenshot.image.url }}"
        data-fancybox="gallery"
        data-download-src="{{ screenshot.image.url }}"
-       data-caption="<a href='{% url 'media_detail' screenshot.media_item.slug %}'>{{ screenshot.media_item.title }}</a>">
+       data-caption="<a style='text-decoration: none; color: inherit;' href='{% url 'media_detail' screenshot.media_item.slug %}'>{{ screenshot.media_item.title }}</a>">
       <img src="{{ screenshot.image.url }}" class="card-img-top" alt="..."
            style="height: 200px; object-fit: cover;">
     </a>
