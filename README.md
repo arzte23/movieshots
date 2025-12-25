@@ -52,7 +52,7 @@ If you want to run this project locally:
 
 1.  **Clone the repository**
     ```bash
-    git clone [https://github.com/arzte23/movieshots](https://github.com/arzte23/movieshots)
+    git clone https://github.com/arzte23/movieshots.git
     cd movieshots
     ```
 
