@@ -36,13 +36,13 @@ Sometimes you don't want to read a plot summary. You want a specific **vibe**.
 ## 📸 Screenshots
 
 ### 1. Home & Search
-![Home Page](https://imgur.com/wrGvETI)
+![Home Page](https://i.imgur.com/wrGvETI.png)
 
 ### 2. Search Results ("Christmas")
-![Search Results](https://imgur.com/XsRiJuv)
+![Search Results](https://i.imgur.com/XsRiJuv.png)
 
 ### 3. Movie Detail View
-![Movie Detail](https://imgur.com/6rGt89u)
+![Movie Detail](https://i.imgur.com/6rGt89u.png)
 
 ---
 
