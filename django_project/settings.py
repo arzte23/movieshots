@@ -134,14 +134,24 @@ STATIC_URL = "static/"
 
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
-STORAGES = {
-    "default": {
-        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
-    },
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
-    },
-}
+if DEBUG:
+    STORAGES = {
+        "default": {
+            "BACKEND": "django.core.files.storage.FileSystemStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+        },
+    }
+else:
+    STORAGES = {
+        "default": {
+            "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+        },
+    }
 
 AUTH_USER_MODEL = "accounts.CustomUser"
 
@@ -168,5 +178,3 @@ CLOUDINARY_STORAGE = {
     "API_KEY": env.str("CLOUDINARY_API_KEY", default=""),
     "API_SECRET": env.str("CLOUDINARY_API_SECRET", default=""),
 }
-
-WHITENOISE_MANIFEST_STRICT = False
