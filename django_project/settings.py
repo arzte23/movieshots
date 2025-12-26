@@ -42,9 +42,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "whitenoise.runserver_nostatic",
+    "cloudinary_storage",
     "django.contrib.staticfiles",
     "debug_toolbar",
     "django_countries",
+    "cloudinary",
     "taggit",
     "accounts",
     "gallery",
@@ -130,7 +132,7 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 
 STORAGES = {
     "default": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
@@ -155,3 +157,9 @@ CSRF_TRUSTED_ORIGINS = env.list(
         "http://127.0.0.1:8000",
     ],
 )
+
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": env.str("CLOUDINARY_CLOUD_NAME", default=""),
+    "API_KEY": env.str("CLOUDINARY_API_KEY", default=""),
+    "API_SECRET": env.str("CLOUDINARY_API_SECRET", default=""),
+}
