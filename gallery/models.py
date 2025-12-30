@@ -1,6 +1,7 @@
 import uuid
 
 from autoslug import AutoSlugField
+from django.conf import settings
 from django.db import models
 from django_countries.fields import CountryField
 from taggit.managers import TaggableManager
@@ -42,6 +43,9 @@ class Screenshot(models.Model):
     image = models.ImageField(upload_to=get_file_path)
     tags = TaggableManager(through=UUIDTaggedItem)
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+    favorites = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, related_name="favorite_screenshots", blank=True
+    )
 
     def __str__(self):
         return f"Screenshot of {self.media_item.title}"

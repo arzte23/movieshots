@@ -15,4 +15,7 @@ urlpatterns = [
         {"category_type": "SERIES"},
         name="series_list",
     ),
+    path(
+        "screenshot/<uuid:pk>/favorite/", views.toggle_favorite, name="toggle_favorite"
+    ),
 ]

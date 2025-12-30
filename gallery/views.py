@@ -1,6 +1,7 @@
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Q
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 
 from .models import MediaItem, Screenshot
 
@@ -61,3 +62,15 @@ def category_view(request, category_type):
     return render(
         request, "gallery/home.html", {"page_obj": page_obj, "category": category_type}
     )
+
+
+@login_required
+def toggle_favorite(request, pk):
+    screenshot = get_object_or_404(Screenshot, pk=pk)
+
+    if request.user in screenshot.favorites.all():
+        screenshot.favorites.remove(request.user)
+    else:
+        screenshot.favorites.add(request.user)
+
+    return redirect(request.META.get("HTTP_REFERER", "home"))
