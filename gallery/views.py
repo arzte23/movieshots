@@ -74,3 +74,18 @@ def toggle_favorite(request, pk):
         screenshot.favorites.add(request.user)
 
     return redirect(request.META.get("HTTP_REFERER", "home"))
+
+
+@login_required
+def favorite_list(request):
+    screenshots = request.user.favorite_screenshots.select_related(
+        "media_item"
+    ).order_by("-created_at")
+
+    return render(
+        request,
+        "gallery/favorite_list.html",
+        {
+            "screenshots": screenshots,
+        },
+    )
