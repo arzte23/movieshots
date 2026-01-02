@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .models import MediaItem, Screenshot
@@ -70,8 +71,15 @@ def toggle_favorite(request, pk):
 
     if request.user in screenshot.favorites.all():
         screenshot.favorites.remove(request.user)
+        is_favorite = False
     else:
         screenshot.favorites.add(request.user)
+        is_favorite = True
+
+    if request.headers.get("x-requested-with") == "XMLHttpRequest" or request.accepts(
+        "application/json"
+    ):
+        return JsonResponse({"is_favorite": is_favorite})
 
     return redirect(request.META.get("HTTP_REFERER", "home"))
 

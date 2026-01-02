@@ -21,9 +21,11 @@
                 <div class="d-flex justify-content-between align-items-center mt-2">
                   <a href="{% url 'media_detail' screenshot.media_item.slug %}" class="btn btn-sm btn-outline-primary">View
                     Movie</a>
-                  <a href="{% url 'toggle_favorite' screenshot.pk %}" class="text-decoration-none"
+                  <a href="{% url 'toggle_favorite' screenshot.pk %}" class="text-decoration-none like-btn"
+                     data-id="{{ screenshot.pk }}"
                      title="Remove from collection">
-                    ❤️ <span class="text-danger">Remove</span>
+                    <span id="heart-icon-{{ screenshot.pk }}">❤️</span>
+                    <span id="heart-text-{{ screenshot.pk }}" class="text-danger">Remove</span>
                   </a>
                 </div>
               </div>
