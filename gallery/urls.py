@@ -19,4 +19,5 @@ urlpatterns = [
         "screenshot/<uuid:pk>/favorite/", views.toggle_favorite, name="toggle_favorite"
     ),
     path("my-collection/", views.favorite_list, name="favorite_list"),
+    path("top-rated/", views.top_rated, name="top_rated"),
 ]
