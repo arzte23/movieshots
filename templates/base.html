@@ -1,6 +1,6 @@
 {% load static %}
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bs-theme="{% if request.COOKIES.theme == 'dark' %}dark{% else %}light{% endif %}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -65,6 +65,11 @@
             <a class="btn btn-primary ms-lg-2" href="{% url 'account_signup' %}">Sign Up</a>
           </li>
         {% endif %}
+        <li class="nav-item">
+          <button class="nav-link btn btn-link" id="theme-toggle" title="Switch theme">
+            🌙
+          </button>
+        </li>
       </ul>
     </div>
   </div>
@@ -135,5 +140,45 @@
         });
     });
 </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const toggleBtn = document.getElementById('theme-toggle');
+        if (!toggleBtn) return;
+
+        const htmlElement = document.documentElement;
+
+        const getTheme = () => {
+            const cookieTheme = document.cookie.split('; ')
+                .find(row => row.startsWith('theme='))
+                ?.split('=')[1];
+            return cookieTheme ||
+                localStorage.getItem('theme') ||
+                (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        };
+
+        let currentTheme = getTheme();
+
+        toggleBtn.innerHTML = currentTheme === 'dark' ? '☀️' : '🌙';
+
+        if (currentTheme !== localStorage.getItem('theme')) {
+            localStorage.setItem('theme', currentTheme);
+        }
+
+        const setTheme = (theme) => {
+            htmlElement.setAttribute('data-bs-theme', theme);
+            toggleBtn.innerHTML = theme === 'dark' ? '☀️' : '🌙';
+            localStorage.setItem('theme', theme);
+            document.cookie = `theme=${theme}; max-age=31536000; path=/; SameSite=Lax`;
+            currentTheme = theme;
+        };
+
+        toggleBtn.addEventListener('click', () => {
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme);
+        });
+    });
+</script>
+
 </body>
 </html>
