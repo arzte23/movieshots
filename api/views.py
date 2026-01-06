@@ -1,5 +1,7 @@
 from rest_framework import generics
+
 from gallery.models import MediaItem
+
 from .serializers import MediaItemSerializer
 
 
