@@ -24,6 +24,7 @@ urlpatterns = [
     path("cthulhu-admin/", admin.site.urls),
     path("accounts/", include("allauth.urls")),
     path("", include("gallery.urls")),
+    path("api/v1/", include("api.urls")),
 ]
 
 if settings.DEBUG:
