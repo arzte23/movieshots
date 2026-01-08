@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
     "django_countries",
+    "django_filters",
     "rest_framework",
     "taggit",
     "accounts",

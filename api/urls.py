@@ -3,5 +3,5 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("items/", views.MediaItemListAPI.as_view(), name="media_item_list"),
+    path("screenshots/", views.ScreenshotListAPI.as_view(), name="screenshot_list"),
 ]
