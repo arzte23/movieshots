@@ -9,4 +9,9 @@ urlpatterns = [
         views.MediaItemDetailAPI.as_view(),
         name="media_item_detail",
     ),
+    path(
+        "screenshots/<uuid:pk>/like/",
+        views.ScreenshotLikeAPI.as_view(),
+        name="screenshot_like",
+    ),
 ]
