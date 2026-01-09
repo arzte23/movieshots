@@ -1,4 +1,5 @@
 asgiref==3.11.0
+attrs==25.4.0
 certifi==2025.11.12
 cffi==2.0.0
 charset-normalizer==3.4.4
@@ -21,9 +22,13 @@ django-stubs-ext==5.2.8
 django-taggit==6.1.0
 djangorestframework==3.16.1
 djangorestframework-stubs==3.16.6
+drf-spectacular==0.29.0
 environs==14.5.0
 gunicorn==23.0.0
 idna==3.11
+inflection==0.5.1
+jsonschema==4.26.0
+jsonschema-specifications==2025.9.1
 marshmallow==4.1.2
 oauthlib==3.3.1
 packaging==25.0
@@ -32,12 +37,16 @@ psycopg2-binary==2.9.11
 pycparser==2.23
 PyJWT==2.10.1
 python-dotenv==1.2.1
+PyYAML==6.0.3
+referencing==0.37.0
 requests==2.32.5
+rpds-py==0.30.0
 ruff==0.14.10
 six==1.17.0
 sqlparse==0.5.5
 types-PyYAML==6.0.12.20250915
 types-requests==2.32.4.20250913
 typing_extensions==4.15.0
+uritemplate==4.2.0
 urllib3==2.6.2
 whitenoise==6.11.0

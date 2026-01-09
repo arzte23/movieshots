@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     "django_countries",
     "django_filters",
+    "drf_spectacular",
     "rest_framework",
     "taggit",
     "accounts",
@@ -234,3 +235,14 @@ if not DEBUG:
     CSRF_COOKIE_SECURE = True
 
     ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
+
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "MovieShots API",
+    "DESCRIPTION": "API for retrieving movie and TV show screenshots",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+}
