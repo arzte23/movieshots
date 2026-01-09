@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import include, path
 
 from . import views
 
@@ -14,4 +14,5 @@ urlpatterns = [
         views.ScreenshotLikeAPI.as_view(),
         name="screenshot_like",
     ),
+    path("auth/", include("dj_rest_auth.urls")),
 ]

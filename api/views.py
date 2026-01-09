@@ -43,6 +43,7 @@ class MediaItemDetailAPI(generics.RetrieveAPIView):
 
 
 class ScreenshotLikeAPI(APIView):
+    serializer_class = ScreenshotSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request, pk):

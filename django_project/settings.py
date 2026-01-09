@@ -10,8 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+from datetime import timedelta
 from pathlib import Path
 
+from django.conf import settings
 from environs import Env
 
 env = Env()
@@ -56,6 +58,9 @@ INSTALLED_APPS = [
     "django_filters",
     "drf_spectacular",
     "rest_framework",
+    "rest_framework.authtoken",
+    "rest_framework_simplejwt.token_blacklist",
+    "dj_rest_auth",
     "taggit",
     "accounts",
     "api",
@@ -237,7 +242,12 @@ if not DEBUG:
     ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
 
 REST_FRAMEWORK = {
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework.authentication.SessionAuthentication",
+        "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
+    ),
 }
 
 SPECTACULAR_SETTINGS = {
@@ -245,4 +255,24 @@ SPECTACULAR_SETTINGS = {
     "DESCRIPTION": "API for retrieving movie and TV show screenshots",
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
+}
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+REST_AUTH = {
+    "USE_JWT": True,
+    "JWT_AUTH_COOKIE": "access-token",
+    "JWT_AUTH_REFRESH_COOKIE": "refresh-token",
+    "JWT_AUTH_HTTPONLY": True,
+    "JWT_AUTH_SAMESITE": "Lax" if settings.DEBUG else "Strict",
+    "JWT_AUTH_COOKIE_USE_CSRF": False,
+    "JWT_AUTH_RETURN_EXPIRATION": True,
+    "JWT_AUTH_SECURE": not settings.DEBUG,
+}
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=10),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
 }
