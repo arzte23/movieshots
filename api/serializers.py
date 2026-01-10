@@ -1,3 +1,4 @@
+from django_countries.serializers import CountryFieldMixin
 from rest_framework import serializers
 
 from gallery.models import MediaItem, Screenshot
@@ -12,7 +13,7 @@ class ScreenshotSerializer(serializers.ModelSerializer):
         fields = ["id", "image", "created_at", "movie_slug", "media_type"]
 
 
-class MediaItemDetailSerializer(serializers.ModelSerializer):
+class MediaItemDetailSerializer(CountryFieldMixin, serializers.ModelSerializer):
     screenshots = ScreenshotSerializer(many=True, read_only=True)
 
     class Meta:
