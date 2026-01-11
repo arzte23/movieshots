@@ -68,7 +68,7 @@ The project exposes a robust REST API. Below are a few key endpoints:
 - `POST /api/v1/screenshots/<id>/like/` - Like/Unlike a screenshot.
 - `POST /api/v1/auth/login/` - Obtain JWT Access/Refresh tokens.
 
-*Check the [Swagger UI](https://movieshots.onrender.com/api/docs/) for the full interactive documentation.*
+*Check the [Swagger UI](https://movieshots.onrender.com/api/schema/swagger-ui/) for the full interactive documentation.*
 
 ---
 
